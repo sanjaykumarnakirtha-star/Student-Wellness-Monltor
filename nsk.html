@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Intelligent Campus Information System</title>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<style>
+		:root {
+			--primary: #4f8cff;
+			--primary-dark: #2a5298;
+			--accent: #ffb347;
+			--bg-gradient: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+			--card-gradient: linear-gradient(120deg, #f8fafc 0%, #e0eafc 100%);
+			--shadow: 0 8px 32px rgba(44,62,80,0.12);
+			--radius: 1.2rem;
+			--text: #1a2233;
+			--muted: #6c7a89;
+			--logo-gradient: linear-gradient(135deg, #4f8cff 0%, #ffb347 100%);
+			--logo-shadow: 0 4px 24px rgba(44,62,80,0.18);
+		}
+		body {
+			font-family: 'Roboto', Arial, sans-serif;
+			background: var(--bg-gradient);
+			margin: 0;
+			padding: 0;
+			color: var(--text);
+			min-height: 100vh;
+		}
+		header {
+			background: linear-gradient(90deg, var(--primary-dark) 60%, var(--primary) 100%);
+			color: #fff;
+			padding: 2.5rem 1rem 2rem 1rem;
+			text-align: center;
+			box-shadow: 0 4px 24px rgba(44,62,80,0.10);
+			border-bottom-left-radius: var(--radius);
+			border-bottom-right-radius: var(--radius);
+			position: relative;
+			overflow: hidden;
+		}
+		.logo-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 1.1rem;
+			margin-bottom: 0.7rem;
+			z-index: 2;
+			position: relative;
+		}
+		.logo-gradient {
+			background: var(--logo-gradient);
+			border-radius: 50%;
+			width: 64px;
+			height: 64px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: var(--logo-shadow);
+			font-size: 2.2rem;
+			color: #fff;
+			border: 3px solid #fff6;
+			animation: logo-spin 3s linear infinite alternate;
+		}
+		@keyframes logo-spin {
+			0% { box-shadow: 0 0 24px 0 #4f8cff44; }
+			100% { box-shadow: 0 0 48px 8px #ffb34744; }
+		}
+		.logo-text {
+			font-size: 2.1rem;
+			font-weight: 900;
+			letter-spacing: 2px;
+			color: #fff;
+			text-shadow: 0 2px 12px #2a5298cc, 0 1px 0 #fff8;
+			font-family: 'Roboto', Arial, sans-serif;
+			background: linear-gradient(90deg, #fff 60%, #ffb347 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+		header h1 {
+			margin: 0 0 0.5rem 0;
+			font-size: 2.8rem;
+			font-weight: 800;
+			letter-spacing: 1px;
+			text-shadow: 0 2px 8px rgba(44,62,80,0.10), 0 0 32px #4f8cff44;
+			z-index: 2;
+			position: relative;
+		}
+		.subtitle, header p {
+			margin: 0;
+			font-size: 1.25rem;
+			color: #e3eafc;
+			font-weight: 500;
+			text-shadow: 0 1px 8px #2a529888;
+			z-index: 2;
+			position: relative;
+		}
+		nav {
+			display: flex;
+			justify-content: center;
+			gap: 2rem;
+			margin: 1.5rem 0 2.5rem 0;
+		}
+		nav button {
+			background: var(--primary);
+			color: #fff;
+			border: none;
+			border-radius: 0.7rem;
+			padding: 0.7rem 1.5rem;
+			font-size: 1.08rem;
+			font-weight: 600;
+			cursor: pointer;
+			box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+			transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+		}
+		nav button.active, nav button:hover {
+			background: var(--accent);
+			color: #fff;
+			box-shadow: 0 4px 16px rgba(255,179,71,0.15);
+			transform: scale(1.03);
+		}
+		main {
+			max-width: 1100px;
+			margin: 0 auto 2.5rem auto;
+			display: flex;
+			flex-direction: column;
+			gap: 2.5rem;
+			padding: 0 1.5rem;
+		}
+		.card {
+			background: var(--card-gradient);
+			border-radius: var(--radius);
+			box-shadow: var(--shadow);
+			padding: 2.2rem 2rem 2rem 2rem;
+			margin-bottom: 1rem;
+			transition: box-shadow 0.2s, transform 0.2s;
+			border: 1.5px solid #e3eafc;
+			position: relative;
+			overflow: hidden;
+			z-index: 1;
+		}
+		.card h2 {
+			margin-top: 0;
+			font-size: 1.5rem;
+			color: var(--primary-dark);
+			font-weight: 700;
+			letter-spacing: 0.5px;
+			text-shadow: 0 1px 8px #4f8cff22;
+		}
+		.chatbot {
+			background: #fff;
+			border-radius: 1rem;
+			box-shadow: 0 2px 12px #4f8cff22;
+			padding: 1.5rem;
+			min-height: 220px;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+		.chat-messages {
+			flex: 1;
+			overflow-y: auto;
+			max-height: 180px;
+			margin-bottom: 1rem;
+		}
+		.chat-message {
+			margin-bottom: 0.7rem;
+			padding: 0.7rem 1.1rem;
+			border-radius: 0.7rem;
+			background: #e0eafc;
+			color: #2a5298;
+			font-weight: 500;
+			width: fit-content;
+			max-width: 80%;
+		}
+		.chat-message.user {
+			background: #ffb34733;
+			color: #b26a00;
+			margin-left: auto;
+		}
+		.chat-input-row {
+			display: flex;
+			gap: 0.7rem;
+		}
+		.chat-input-row input {
+			flex: 1;
+			padding: 0.7rem 1rem;
+			border-radius: 0.7rem;
+			border: 1.5px solid #e3eafc;
+			font-size: 1rem;
+		}
+		.chat-input-row button {
+			background: var(--primary);
+			color: #fff;
+			border: none;
+			border-radius: 0.7rem;
+			padding: 0.7rem 1.2rem;
+			font-size: 1rem;
+			font-weight: 600;
+			cursor: pointer;
+			transition: background 0.2s;
+		}
+		.chat-input-row button:hover {
+			background: var(--accent);
+		}
+		@media (max-width: 900px) {
+			main {
+				padding: 0 0.5rem;
+			}
+			.logo-text {
+				font-size: 1.3rem;
+			}
+			header h1 {
+				font-size: 1.5rem;
+			}
+			.logo-gradient {
+				width: 44px;
+				height: 44px;
+				font-size: 1.2rem;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="logo-container">
+			<div class="logo-gradient">
+				<i class="fa-solid fa-school"></i>
+			</div>
+			<span class="logo-text">CampusAI</span>
+		</div>
+		<h1>Intelligent Campus Information System</h1>
+		<p class="subtitle">AI-powered information and services for students</p>
+	</header>
+	<nav>
+		<button class="active" onclick="showSection('chatbot')"><i class="fa-solid fa-comments"></i> Chatbot</button>
+		<button onclick="showSection('info')"><i class="fa-solid fa-calendar-days"></i> Info Modules</button>
+		<button onclick="showSection('query')"><i class="fa-solid fa-question-circle"></i> Common Queries</button>
+	</nav>
+	<main>
+		<section class="card" id="section-chatbot">
+			<h2><i class="fa-solid fa-comments"></i> Campus Chatbot</h2>
+			<div class="chatbot">
+				<div class="chat-messages" id="chatMessages">
+					<div class="chat-message">Hi! How can I help you with your campus needs today?</div>
+				</div>
+				<div class="chat-input-row">
+					<input type="text" id="chatInput" placeholder="Type your question...">
+					<button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+				</div>
+			</div>
+		</section>
+		<section class="card" id="section-info" style="display:none">
+			<h2><i class="fa-solid fa-calendar-days"></i> Information Modules</h2>
+			<ul>
+				<li><b>Academic Schedules:</b> Semester dates, exam timetables, holidays</li>
+				<li><b>Facility Timings:</b> Library: 8am-8pm, Sports Complex: 6am-10pm, Labs: 9am-6pm</li>
+				<li><b>Campus Events:</b> Tech Fest (Oct 10), Sports Day (Nov 5), Cultural Night (Dec 1)</li>
+			</ul>
+		</section>
+		<section class="card" id="section-query" style="display:none">
+			<h2><i class="fa-solid fa-question-circle"></i> Common Student Concerns</h2>
+			<ul>
+				<li><b>Dining Services:</b> Open 7am-9pm, vegetarian and non-veg options available</li>
+				<li><b>Library Resources:</b> 100,000+ books, digital access, study rooms</li>
+				<li><b>Administrative Procedures:</b> ID card issue, fee payment, transcript requests</li>
+			</ul>
+		</section>
+	</main>
+	<script>
+		function showSection(section) {
+			document.getElementById('section-chatbot').style.display = section === 'chatbot' ? '' : 'none';
+			document.getElementById('section-info').style.display = section === 'info' ? '' : 'none';
+			document.getElementById('section-query').style.display = section === 'query' ? '' : 'none';
+			const navBtns = document.querySelectorAll('nav button');
+			navBtns.forEach((btn, idx) => {
+				btn.classList.remove('active');
+				if ((section === 'chatbot' && idx === 0) || (section === 'info' && idx === 1) || (section === 'query' && idx === 2)) {
+					btn.classList.add('active');
+				}
+			});
+		}
+		function sendMessage() {
+			const input = document.getElementById('chatInput');
+			const msg = input.value.trim();
+			if (!msg) return;
+			const chat = document.getElementById('chatMessages');
+			const userDiv = document.createElement('div');
+			userDiv.className = 'chat-message user';
+			userDiv.textContent = msg;
+			chat.appendChild(userDiv);
+			setTimeout(() => {
+				const botDiv = document.createElement('div');
+				botDiv.className = 'chat-message';
+				botDiv.textContent = getBotReply(msg);
+				chat.appendChild(botDiv);
+				chat.scrollTop = chat.scrollHeight;
+			}, 700);
+			input.value = '';
+			chat.scrollTop = chat.scrollHeight;
+		}
+		function getBotReply(msg) {
+			msg = msg.toLowerCase();
+			if (msg.includes('library')) return 'The library is open from 8am to 8pm.';
+			if (msg.includes('schedule') || msg.includes('exam')) return 'You can find academic schedules in the Info Modules section.';
+			if (msg.includes('event')) return 'Upcoming events: Tech Fest (Oct 10), Sports Day (Nov 5), Cultural Night (Dec 1).';
+			if (msg.includes('dining')) return 'Dining services are open 7am-9pm with veg and non-veg options.';
+			if (msg.includes('id card')) return 'ID cards can be issued at the admin office, 10am-4pm.';
+			return 'Sorry, I can help with campus schedules, facilities, events, and common queries!';
+		}
+		document.getElementById('chatInput').addEventListener('keydown', function(e) {
+			if (e.key === 'Enter') sendMessage();
+		});
+	</script>
+</body>
+</html>
